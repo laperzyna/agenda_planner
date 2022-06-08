@@ -1,10 +1,10 @@
 //TODO: figure out how to keep events there after refresh!
-//TODO: put getset into loop somehow
+//TODO: put getset into loop somehow maybe?
 $(document).ready(function() {
     var currentDateTimeSpan = $("#currentDay");
     var currentTime = parseInt(moment().format('HH'));
     //time test
-    currentTime = 15;
+    // currentTime = 15;
     console.log(currentTime);
     var boxes = new Array;
     var btns = new Array;
@@ -36,11 +36,11 @@ $(document).ready(function() {
     var btnFive = $("#bNine");
     hrFive.val(localStorage.getItem('userText5'));
     boxes.push(hrNine, hrTen, hrEleven, hrTwelve, hrOne, hrTwo, hrThree, hrFour, hrFive);
-    //btns.push(btnNine, btnTen, btnEleven, btnTwelve, btnOne, btnTwo, btnThree, btnFour, btnFive)
+    btns.push(btnNine, btnTen, btnEleven, btnTwelve, btnOne, btnTwo, btnThree, btnFour, btnFive)
     console.log(boxes);
     //console.log(btns);
     
-
+    //-----TEST------
     // localStorage.setItem('Entry1', 'hi');
     // localStorage.setItem('Entry2', 'hola');
    
@@ -68,6 +68,7 @@ $(document).ready(function() {
         }
     }
 
+    //-----TEST FUNCTION------
     // function getSet() {
     //     for (var i = 0; i < btns.length; i++) {
     //         btns[0].on('click', function() {
@@ -77,74 +78,72 @@ $(document).ready(function() {
     //             }
     //         });
     // }
+    
+    //This function sets the local storage to be whatever the user puts into
+    //the text boxes by using .setItem. The only thing is I cannot figure out
+    //how to retrieve the data after a refresh.
     function getSet() {
-        btnNine.on('click', function(event) {
+        btns[0].on('click', function(event) {
             event.preventDefault();
-            if (boxes[0].val() !== '') {
-                localStorage.setItem('userText9', boxes[0].val());
+            if(!localStorage.getItem('userText9')){
+                localStorage.setItem('userText9', JSON.stringify(boxes[0].val()));
             }
         });
     
-        btnTen.on('click', function(event) {
+        btns[1].on('click', function(event) {
             event.preventDefault();
-            if (boxes[1].val() !== '') {
-                localStorage.setItem('userText10', boxes[1].val());
-            }
-    
+            if(!localStorage.getItem('userText10')){
+                localStorage.setItem('userText10', JSON.stringify(boxes[1].val()));
+            } 
         });
     
-        btnEleven.on('click', function(event) {
+        btns[2].on('click', function(event) {
             event.preventDefault();
-            if (boxes[2].val() !== '') {
-                localStorage.setItem('userText11', boxes[2].val());
-            }
-    
-        });
-    
-        btnTwelve.on('click', function(event) {
-            event.preventDefault();
-            if (boxes[3].val() !== '') {
-                localStorage.setItem('userText12', boxes[3].val());
-    
+            if(!localStorage.getItem('userText11')){
+                localStorage.setItem('userText11', JSON.stringify(boxes[2].val()));
             }
         });
     
-        btnOne.on('click', function(event) {
+        btns[3].on('click', function(event) {
             event.preventDefault();
-            if (boxes[4].val() !== '') {
-                localStorage.setItem('userText1', boxes[4].val());
+            if(!localStorage.getItem('userText12')){
+                localStorage.setItem('userText12', JSON.stringify(boxes[3].val()));
             }
-    
         });
     
-        btnTwo.on('click', function(event) {
+        btns[4].on('click', function(event) {
             event.preventDefault();
-            if (boxes[5].val() !== '') {
-                localStorage.setItem('userText2', boxes[5].val());
-            }
-    
+            if(!localStorage.getItem('userText1')){
+                localStorage.setItem('userText1', JSON.stringify(boxes[4].val()));
+            }  
         });
     
-        btnThree.on('click', function(event) {
+        btns[5].on('click', function(event) {
             event.preventDefault();
-            if (boxes[6].val() !== '') {
-                localStorage.setItem('userText3', boxes[6].val());
+            if(!localStorage.getItem('userText2')){
+                localStorage.setItem('userText2', JSON.stringify(boxes[5].val()));
             }
-    
         });
     
-        btnFour.on('click', function(event) {
+        btns[6].on('click', function(event) {
+            event.preventDefault();
+            if(!localStorage.getItem('userText3')){
+                localStorage.setItem('userText3', JSON.stringify(boxes[6].val()));
+            }
+        });
+    
+        btns[7].on('click', function(event) {
             event.preventDefault(); 
-            if (boxes[7].val() !== '') {
-                localStorage.setItem('userText4', boxes[7].val());  
-            }
+            if(!localStorage.getItem('userText4')){
+                localStorage.setItem('userText4', JSON.stringify(boxes[7].val()));
+            } 
         });
         
-        btnFive.on('click', function(event) {
+        btns[8].on('click', function(event) {
             event.preventDefault();
-            if (boxes[8].val() !== '') {
-                localStorage.setItem('userText5', boxes[8].val());
-            } 
+            if(!localStorage.getItem('userText5')){
+                localStorage.setItem('userText5', JSON.stringify(boxes[8].val()));
+            }
         });
     }
 
@@ -154,6 +153,7 @@ $(document).ready(function() {
         currentDateTimeSpan.text(moment().format("dddd, MMMM Do YYYY"));
     }
     
+    //function calls
     updateCurrentDate();
     ppf();
     getSet();
